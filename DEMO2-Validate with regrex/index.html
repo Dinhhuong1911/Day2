@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .d-none {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="login.php">
+        <input type="text" name="tel" id="telInput" onkeyup="validatePhone(this)" placeholder="Please enter your phone number">
+        <span class="d-none" id="tel-error">Invalid phone number format</span>
+        <br>
+        <input type="submit" value="submit" id="submitBtn">
+    </form>
+    <script>
+        function validatePhone(obj) {
+            let phoneRegrex = /^[0][1-9]{9}$/;
+            let phone = obj.value;
+            let IsValidPhone = phoneRegrex.test(phone);
+            console.log(obj.value);
+            console.log(IsValidPhone)
+            let telError = document.getElementById('tel-error');
+            let submitBtn = document.getElementById('submitBtn');
+            if (!IsValidPhone) {
+                telError.style.display = 'block';
+                submitBtn.disabled = true;
+            } else {
+                telError.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>
